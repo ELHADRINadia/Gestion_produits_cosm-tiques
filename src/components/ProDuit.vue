@@ -3,6 +3,8 @@
     <img src="../assets/masque-v.jpg" />
     <div class="overlay">
 <div class="text_img">Show More</div>
+</div>
+</div>
 </template>
 <script>
 export default {

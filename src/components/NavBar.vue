@@ -4,7 +4,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="#" target="_blank">
-        <strong class="log">ShopGlow</strong>
+        <strong class="log">SheGlow</strong>
       </a>
 
       <!-- Collapse -->
@@ -19,7 +19,7 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link waves-effect " href="#"  >Home</a>
+            <a class="nav-link waves-effect " href="/home"  >Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link waves-effect  " href="#about"  >About</a>

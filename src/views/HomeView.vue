@@ -2,7 +2,7 @@
     <NavBar />
     <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Bienvenue chez ShopGlow!</div>
+                <div class="masthead-subheading">Bienvenue chez SheGlow!</div>
                 <div class="masthead-heading A2 ">It's Nice To Meet You</div>
                 <a class="btn A1 btn-xl " href="#services">Tell Me More</a>
             </div>
@@ -39,7 +39,7 @@
   <div class="text-center">
       <h2 class="section-heading text-uppercase">Catégorie</h2>
   </div>
-<ProImage />
+<CategorieImg />
 </section>
   <section class="page-section" id="about">
            <div class="container">
@@ -103,20 +103,20 @@
            </div>
        </section>
   <footer>
-    <Footer />
+    <FooterView />
   </footer>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import ProImage from "@/components/ProImage.vue";
-import Footer from "@/components/Footer.vue";
+import CategorieImg from "@/components/CategorieImg.vue";
+import FooterView from "@/components/FooterView.vue";
 export default {
   name: "HomeView",
   components: {
     NavBar,
-    ProImage,
-    Footer,
+    CategorieImg,
+  FooterView,
   },
 };
 </script>

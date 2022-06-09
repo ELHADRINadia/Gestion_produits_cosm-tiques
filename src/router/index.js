@@ -3,7 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import ProductView from "../views/ProductView.vue";
 import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
-import DashboardView from '../views/DashboardView.vue';
+import DashboardView from "../views/Admin/DashboardView.vue";
+import AddProduct from "../views/Admin/AddProduct.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path:  '/dashboard',
     name: 'dashboard',
     component: DashboardView,
+  },
+  {
+    path:  '/AddProduct',
+    name: 'AddProduct',
+    component: AddProduct,
   },
 
 ];
