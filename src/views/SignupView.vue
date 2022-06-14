@@ -55,48 +55,69 @@
   export default {
     name: "SignupView",
     components: {},
-    //  data() {
-    //   return {
-    //     firstname: "",
-    //     lastname: "",
-    //     email: "",
-    //     phone: "",
-    //     password: "",
-    //   };
-    // },
-    // methods: {
-    //   signUp() {
-    //     const formData = new FormData();
-    //     formData.append("firstname", this.firstname);
-    //     formData.append("lastname", this.lastname);
-    //     formData.append("email", this.email);
-    //     formData.append("phone", this.phone);
-    //     formData.append("password", this.password);
-    //     console.log(formData);
-    //     axios
-    //       .post(
-    //         "http://localhost/fil-rouge/pet-shop/Backend/ClientController/signup",
-    //         formData
-    //       )
-    //
-    //       .then((Response) => {
-    //         console.log(Response.data);
-    //
-    //         if (Response.data.success) {
-    //          this.$router.push({ name: "DashboardClient" });
-    //         } else {
-    //           alert(Response.data.error);
-    //         }
-    //
-    //       });
-    //   },
-    // },
+     data() {
+      return {
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        password: "",
+      };
+    },
+    methods: {
+      async signUp()  {
+        let formData = new FormData();
+        formData.append("firstname", this.firstname);
+          formData.append("lastname", this.lastname);
+          formData.append("email", this.email);
+          formData.append("phone", this.phone);
+          formData.append("password", this.password);
+
+               let response = await fetch(
+                   "http://localhost/fill-rouge/backend/UserController/register",
+                   {
+                       method: "POST", // or 'PUT'
+                       body: formData,
+                   }
+               );
+               response = await response.json();
+               console.log(response);
+                   this.$router.push("/Product/" );
+               }
+      // async  signUp() {
+      //   const formData = new FormData();
+      //   formData.append("firstname", this.firstname);
+      //   formData.append("lastname", this.lastname);
+      //   formData.append("email", this.email);
+      //   formData.append("phone", this.phone);
+      //   formData.append("password", this.password);
+      //   console.log(formData);
+      //   let response = await fetch(
+      //       "http://localhost/fill-rouge/backend/ProductController/addproduct",
+      //       {
+      //           method: "POST", // or 'PUT'
+      //           body: formData,
+      //       }
+      //   );
+      //
+      //     .then((Response) => {
+      //       console.log(Response.data);
+      //
+      //       if (Response.data.success) {
+      //        this.$router.push({ name: "Product" });
+      //       } else {
+      //         alert(Response.data.error);
+      //       }
+      //
+      //     });
+      // },
+    },
   };
 </script>
 
 <style scoped>
   * {
-    background-image: url("../assets/back.jpg");
+    background-image: url("#");
     font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;

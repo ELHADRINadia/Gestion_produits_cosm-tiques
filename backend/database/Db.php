@@ -1,7 +1,7 @@
 <?php
 
 class DB{
-    public function connect(){
+    public static function connect(){
 
         try{
 

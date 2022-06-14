@@ -1,10 +1,5 @@
 <?php
 require_once dirname(__DIR__)."/models/product.php";
-
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
-
 class ProductController
 {
     public function getAll()
@@ -53,4 +48,61 @@ class ProductController
         }
     }
   }
+
+  // **********************update product*******************
+  public function update()
+    {
+        $category = new Product();
+        $image = $_FILES['image'];
+        $extention = pathinfo($image["name"], PATHINFO_EXTENSION);
+        $new_name = uniqid('', true) . '.' . $extention;
+        $target = "../Backend/images/" . $new_name;
+        move_uploaded_file($image['tmp_name'], $target);
+
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $quantity = $_POST['quantity'];
+        $image = $new_name;
+        $details = $_POST['details'];
+        $category = $_POST['category'];
+        $id = $_POST['id'];
+
+        if ($category->update($name, $price, $quantity, $image, $details, $category, $id)) {
+            echo json_encode(['message' => 'Product updated']);
+        } else {
+            echo json_encode(['message' => 'Product not updated']);
+        }
+    }
+// **********************delete product**********************
+public function delete()
+   {
+       if ($_SERVER["REQUEST_METHOD"] == "POST") {
+           $category = new Product();
+           $id = $_POST['id'];
+           if ($category->delete($id)) {
+               echo json_encode(['message' => 'Product deleted']);
+           } else {
+               echo json_encode(['message' => 'Product not deleted']);
+           }
+       }
+   }
+
+   public function search(){
+              $search = $_POST['search'];
+          $stmt =Product::searchProducts($search);
+          echo json_encode($stmt);
+      }
+
+      public function products_by_category(){
+             $search = $_POST['search'];
+             $stmt =Product::get_products_by_category($search);
+             echo json_encode($stmt);
+         }
+
+
+
+
+
+
+
   }

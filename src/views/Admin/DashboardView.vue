@@ -18,22 +18,9 @@
               <FIcons :icon="['fas', 'user']" />Add
 
             </button>
-            <button class="float-start btn btn-danger"><a href="#">
-              <FIcons :icon="['fas', 'user-times']" />Delete All Product</a>
-            </button>
             <div class="clearfix"></div>
             </div>
             <hr class="bg-info" />
-            <div class="alert alert-danger alert-dismissible fade show" role="alert" v-if="errMsg">
-              {{ errMsg }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
-            </button>
-            </div>
-            <div class="alert alert-success alert-dismissible fade show" role="alert" v-if="successMsg">
-                {{ successMsg }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
-            </button>
-            </div>
             <div v-if='dataComming'>
               is loading ....
             </div>
@@ -42,7 +29,6 @@
             class="table table-border table-striped caption-top">
               <caption>
                 List of products
-                <!-- list of registered products({{  productsData.lenght }}) -->
               </caption>
               <thead>
                 <tr class="bg-success text-light text-center">
@@ -58,20 +44,39 @@
               </thead>
               <tbody>
                 <tr v-for="elemt in productData" v-bind:key="elemt.id" class="text-center">
-                  <td>{{elemt.id}}</td>
-                <td>{{elemt.name}}</td>
-                <td>{{elemt.price}}</td>
-                <td><img class="w-50 p-3" :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" alt=""/></td>
-                <td>{{elemt.quantity}}</td>
-                <td>{{elemt.category}}</td>
-                <td>{{elemt.details}}</td>
-                <td>
-                  <div class="d-flex flex-row">
-                    <button class="btn btn-danger">Delete</button>&nbsp;
-                    <button class="btn btn-warning">Update</button>
-                  </div>
+                  <template v-if="editProduct.id == elemt.id">
+                    <td>{{elemt.id}}</td>
+                    <td><input type="text" v-model="editProduct.name" ></td>
+                    <td><input type="text" v-model="editProduct.price" ></td>
+                    <td><img class="w-50 p-3" :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" alt=""/></td>
+                    <td><input type="text" v-model="editProduct.quantity" ></td>
+                    <td><input type="text" v-model="editProduct.category" ></td>
+                    <td><input type="text" v-model="editProduct.details" ></td>
+                    <td>
+                                    <div class="d-flex flex-row">
+                                      <button class="btn btn-danger" @click="del(elemt.id);" >Delete</button>&nbsp;
+                                      <button class="btn btn-warning" @click="update(elemt.id);">Update</button>
+                                    </div>
 
-                </td>
+                                </td>
+                            </template>
+                            <template v-else>
+
+                    <td>{{elemt.id}}</td>
+                  <td>{{elemt.name}}</td>
+                  <td>{{elemt.price}}</td>
+                  <td><img class="w-50 p-3" :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" alt=""/></td>
+                  <td>{{elemt.quantity}}</td>
+                  <td>{{elemt.category}}</td>
+                  <td>{{elemt.details}}</td>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <button class="btn btn-danger" @click="del(elemt.id);" >Delete</button>&nbsp;
+                      <button class="btn btn-warning" @click="edit(elemt);">Update</button>
+                    </div>
+
+                  </td>
+                </template>
               </tr>
         </tbody>
       </table>
@@ -97,8 +102,20 @@
         quantity:"",
         category:"",
         details:"",
-        dataComming:true
+        dataComming:true,
+        editProduct:{
+              id:'',
+              name:'',
+              price:'',
+              image:'',
+              quantity:'',
+              category:'',
+              details:'',
+          },
     };
+  },
+  mounted(){
+     this.getAll();
   },
   methods:{
     async getAll(){
@@ -106,12 +123,22 @@
     const data = await response.json();
     console.log(data);
     this.productData=data;
+    this.dataComming=false;
     },
+      async del(id){
+        let formData =new FormData();
+        formData.append("id",id)
+               await fetch('http://localhost/fill-rouge/backend/ProductController/delete',{
+                   method:"POST",
+                   body:formData
+
+               });
+              await this.getAll();
+      },
     goToAdd(){
       this.$router.push('/AddProduct')
-    }
-  },
-  created() {
+    },
+    created() {
     //do something after creating vue instance
     fetch('http://localhost/fill-rouge/backend/ProductController/getAll')
     .then((response)=>response.json())
@@ -123,6 +150,31 @@
       },1600)
     })
   },
+  async update(id){
+          console.log(this.editProduct);
+          this.editProduct.id = id;
+         await fetch('http://localhost/fill-rouge/backend/ProductController/update',{
+              method: 'POST',
+              headers:{
+                  'Content-Type': 'application/json',
+              },
+              body:JSON.stringify(this.editProduct),
+          });
+          await this.getAll();
+          this.editProduct.id='';
+          this.editProduct.name='';
+          this.editProduct.price='';
+          this.editProduct.image='';
+          this.editProduct.quantity='';
+          this.editProduct.category='';
+          this.editProduct.details='';
+
+      },
+      async edit(product){
+    this.editProduct = product;
+    console.log(product);
+          },
+      }
   };
 </script>
 

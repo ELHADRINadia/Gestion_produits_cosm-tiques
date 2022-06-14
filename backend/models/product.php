@@ -49,9 +49,9 @@ public function create($data)
          }
      }
      /*update produit*/
-     public function update($name,$price,$quantity,$image,$details,$category_name,$id)
+     public function update($id,$name,$price,$quantity,$image,$details,$category)
    {
-       $query = "UPDATE `product` SET `name`='$name',`price`='$price',`quantity`='$quantity',`image`='$image',`details`='$details',`category_name`='$category_name' WHERE id = $id";
+       $query = "UPDATE `product` SET `name`='$name',`price`='$price',`quantity`='$quantity',`image`='$image',`details`='$details',`category`='$category' WHERE id = $id";
        $log = $this->connect()->prepare($query);
        if( $log->execute()){
 
@@ -71,16 +71,37 @@ public function create($data)
     }
 
 
+  public static function searchProducts($search){
+            $sql = "SELECT * FROM product WHERE name LIKE '%$search%'";
+            $stmt = DB::connect()->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
+            $count = count($result);
+            if ($count < 1) {
+                $response = ["status" => "failed", "message" => "Oops! No results for '$search'."];
+            } else {
+               $response = ["status" => "success", "products" => $result, "count" => $count];
+            }
+            return $response;
+        }
 
 
+        // ******************************
+        public function get_products_by_category(){
+        $category = $_GET['category'];
 
+        $sql = mysqli_query($conn,"SELECT * FROM products WHERE category = '$category'");
+        $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
 
-
-
-
-
-
+        $count = count($result);
+        if ($count < 1) {
+            $response = ["status" => "failed", "message" => "No products with category '$category' were found."];
+        } else {
+           $response = ["status" => "success", "products" => $result, "count" => $count];
+        }
+        return $response;
+    }
    }
 ?>

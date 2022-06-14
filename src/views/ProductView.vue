@@ -19,6 +19,22 @@
   </section> -->
   <section class="pt-5 pb-5">
   <div class="container">
+    <form @submit.prevent="searchP">
+         <label for="search">Search</label>
+         <div class="input">
+           <input type="text" v-model="search" name="search" placeholder="Type here..." />
+           <!-- <button @onclick="searchP"><i class="gg-search"></i>search</button> -->
+           <input type="submit" value="search">
+         </div>
+         <div class="input">
+              <label for="category">Category</label>
+              <select id="category">
+                <option value="masque">masque</option>
+                <option value="Creme">Creme</option>
+                <option value="Huiles">Huiles</option>
+              </select>
+            </div>
+       </form>
     <div class="row mb-md-2">
         <div
         v-for = '(elemt,index) in productData' :key='index'
@@ -73,7 +89,8 @@ export default {
       quantity:"",
       category:"",
       details:"",
-      dataComming:true
+      dataComming:true,
+      search:""
   };
 },
  methods:{
@@ -82,6 +99,18 @@ export default {
    const data = await response.json();
    console.log(data);
    this.productData=data;
+   },
+   async searchP(){
+     let formData = new FormData();
+     formData.append("search",this.search);
+   const response = await fetch('http://localhost/fill-rouge/backend/ProductController/search',{
+     method:"POST",
+     body:formData
+    }
+   );
+   const data = await response.json();
+   console.log(data.products);
+   this.productData=data.poducts;
    },
    },
    created() {
@@ -98,3 +127,8 @@ export default {
    },
 };
 </script>
+<style>
+.gg-search{
+
+}
+</style>

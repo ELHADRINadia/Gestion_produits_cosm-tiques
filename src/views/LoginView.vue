@@ -1,7 +1,7 @@
 <template>
   <div class="Admin-login">
     <section class="form-container">
-      <form class="box" method="POST" v-on:submit.prevent="login">
+      <form class="box" method="POST" v-on:submit.prevent="signIn">
         <h3>login now</h3>
         <input
           v-model="email"
@@ -34,36 +34,41 @@
   export default {
     name: "LoginView",
     components: {},
-    // data() {
-    //   return {
-    //     email: "",
-    //     password: "",
-    //   };
-    // },
-    // methods: {
-    //   async signIn() {
-    //     const formData = new FormData();
-    //     formData.append("email", this.email);
-    //     formData.append("password", this.password);
-    //     axios
-    //       .post(
-    //         "http://localhost/fil-rouge/pet-shop/Backend/AdminController/login",
-    //         formData
-    //       )
-    //
-    //       .then((Response) => {
-    //         console.log(Response.data);
-    //
-    //         if (Response.data.success) {
-    //          this.$router.push({ name: "DashboardView" });
-    //         } else {
-    //           alert(Response.data.error);
-    //         }
-    //
-    //
-    //       });
-    //   },
-    // },
+    data() {
+      return {
+        email: "",
+        password: "",
+      };
+    },
+    methods: {
+      async signIn() {
+        const formData = new FormData();
+        formData.append("email", this.email);
+        formData.append("password", this.password);
+        let response = await fetch(
+            "http://localhost/fill-rouge/backend/UserController/auth",
+            {
+                method: "POST", // or 'PUT'
+                body: formData
+            }
+        );
+        response = await response.json();
+            console.log(response);
+            if (response.success) {
+              if (response.user.role == "admin") {
+                this.$router.push({ name: "dashboard" });
+
+              }else {
+                this.$router.push({ name: "product" });
+
+              }
+            } else {
+              alert(response.message);
+            }
+
+
+      },
+    },
   };
 </script>
 <style scoped>
