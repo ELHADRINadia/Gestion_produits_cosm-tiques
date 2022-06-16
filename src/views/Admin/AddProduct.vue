@@ -50,24 +50,19 @@
           </div>
           <div class="form-group inputBox dropdown mt-3">
             <label for="examplegareA">Category</label>
-            <input
-             v-model="productData.category"
-              type="text"
-              class="form-control category"
-              name="category"
-              placeholder="category"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            />
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Soin cheveux</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Soin visage</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Soin corps</a>
-              </li>
-            </ul>
+            <select type="text"
+            v-model="productData.category"
+            class="form-control category"
+            name="category"
+            placeholder="category"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="category-filter">
+              <option value="all" s elected>All</option>
+              <option value="masque">Masque</option>
+              <option value="creme">Creme</option>
+              <option value="huiles">Huiles</option>
+            </select>
           </div>
           <div class="inputBox">
             <span>product discription</span>

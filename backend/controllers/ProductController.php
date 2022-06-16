@@ -2,6 +2,14 @@
 require_once dirname(__DIR__)."/models/product.php";
 class ProductController
 {
+  public function getOneProduct($id)
+   {
+       $data = array(
+           'id' => $id
+       );
+       $product = Product::getProduct($data);
+         echo json_encode($product);
+   }
     public function getAll()
     {
 
@@ -52,8 +60,9 @@ class ProductController
   // **********************update product*******************
   public function update()
     {
+
         $category = new Product();
-        $image = $_FILES['image'];
+        // $image = $_FILES['image'];
         $extention = pathinfo($image["name"], PATHINFO_EXTENSION);
         $new_name = uniqid('', true) . '.' . $extention;
         $target = "../Backend/images/" . $new_name;
@@ -67,7 +76,7 @@ class ProductController
         $category = $_POST['category'];
         $id = $_POST['id'];
 
-        if ($category->update($name, $price, $quantity, $image, $details, $category, $id)) {
+        if ($category->update($id,$name,$price,$quantity,$image,$details,$category)) {
             echo json_encode(['message' => 'Product updated']);
         } else {
             echo json_encode(['message' => 'Product not updated']);

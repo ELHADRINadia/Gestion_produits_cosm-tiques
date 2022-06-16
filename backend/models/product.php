@@ -21,6 +21,19 @@ class Product extends DB
     //
     //
     // }
+    static public function getProduct($data){
+      $id = $data['id'];
+      try{
+          $query = "SELECT *FROM product WHERE id = $id";
+          $stmt = DB::connect()->prepare($query);
+          $stmt->execute();
+          $product= $stmt->fetch(PDO::FETCH_OBJ);
+            return $product;
+
+      } catch(PDOException $ex){
+          echo 'error' . $ex->getMessage();
+      }
+  }
     public function getAll()
    {
        try{
@@ -51,6 +64,8 @@ public function create($data)
      /*update produit*/
      public function update($id,$name,$price,$quantity,$image,$details,$category)
    {
+      echo $name;
+      die();
        $query = "UPDATE `product` SET `name`='$name',`price`='$price',`quantity`='$quantity',`image`='$image',`details`='$details',`category`='$category' WHERE id = $id";
        $log = $this->connect()->prepare($query);
        if( $log->execute()){

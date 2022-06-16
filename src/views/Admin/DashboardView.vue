@@ -31,7 +31,7 @@
                 List of products
               </caption>
               <thead>
-                <tr class="bg-success text-light text-center">
+                <tr class="text-light text-center color">
                   <th><FIcons :icon="['fas','id-badge']"/> id</th>
                   <th> name</th>
                   <th> price</th>
@@ -48,7 +48,7 @@
                     <td>{{elemt.id}}</td>
                     <td><input type="text" v-model="editProduct.name" ></td>
                     <td><input type="text" v-model="editProduct.price" ></td>
-                    <td><img class="w-50 p-3" :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" alt=""/></td>
+                    <td><img class="w-50 p-3" :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" alt="#"/></td>
                     <td><input type="text" v-model="editProduct.quantity" ></td>
                     <td><input type="text" v-model="editProduct.category" ></td>
                     <td><input type="text" v-model="editProduct.details" ></td>
@@ -72,7 +72,7 @@
                   <td>
                     <div class="d-flex flex-row">
                       <button class="btn btn-danger" @click="del(elemt.id);" >Delete</button>&nbsp;
-                      <button class="btn btn-warning" @click="edit(elemt);">Update</button>
+                      <button class="btn btn-warning" @click="editOne(elemt);">Update</button>
                     </div>
 
                   </td>
@@ -174,7 +174,12 @@
     this.editProduct = product;
     console.log(product);
           },
-      }
+          editOne(product)
+          {
+            this.$router.push({ name: 'update', params: { id:product.id }})
+          }
+      },
+
   };
 </script>
 
@@ -469,5 +474,8 @@
   body {
     font-family: "Open Sans", sans-serif;
     line-height: 1.25;
+  }
+  .color{
+    background-color:#00312C; 
   }
 </style>

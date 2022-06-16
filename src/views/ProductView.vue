@@ -5,36 +5,28 @@
         <h2 class="section-heading text-uppercase">Produit</h2>
     </div>
   </section>
-  <!-- <section>
-  <div
-  v-for = '(item,index) in productData' :key='index'
-  class="card">
-<img src="../assets/huil-cheveux.jpg" alt="Denim Jeans" style="width:100%">
-<h1>
-  {{item.name}}
-</h1>
-<p>$</p>
-<p><button><a href="/product">Add to cart</a></button></p>
-</div>
-  </section> -->
+   <section>
+  <form @submit.prevent="searchP">
+       <label  class="input" for="search"></label>
+       <div class="search">
+         <input type="text" v-model="search" name="search" placeholder="Type here..." />
+         <!--<button @onclick="searchP"><i class="gg-search"></i>search</button> -->
+       </div>
+       <div>
+        <label   class="input" for="category-filter">Category</label>
+        <div class="Caté">
+          <select id="category-filter">
+            <option value="all" s elected>All</option>
+            <option value="masque">Masque</option>
+            <option value="creme">Creme</option>
+            <option value="huiles">Huiles</option>
+          </select>
+        </div>
+      </div>
+</form>
+  </section>
   <section class="pt-5 pb-5">
   <div class="container">
-    <form @submit.prevent="searchP">
-         <label for="search">Search</label>
-         <div class="input">
-           <input type="text" v-model="search" name="search" placeholder="Type here..." />
-           <!-- <button @onclick="searchP"><i class="gg-search"></i>search</button> -->
-           <input type="submit" value="search">
-         </div>
-         <div class="input">
-              <label for="category">Category</label>
-              <select id="category">
-                <option value="masque">masque</option>
-                <option value="Creme">Creme</option>
-                <option value="Huiles">Huiles</option>
-              </select>
-            </div>
-       </form>
     <div class="row mb-md-2">
         <div
         v-for = '(elemt,index) in productData' :key='index'
@@ -45,19 +37,17 @@
                     <img :src="'http://localhost/fill-rouge/backend/images/' + elemt.image" class="card-img-top" alt=""/></a>
                     <!-- {{ elemt.image}} -->
                 <div class="card-body">
-                    <a href="#">
                         <h5 class="font-weight-normal">{{elemt.name}}</h5>
-                    </a>
                     <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i></span></div>
                     <div class="d-flex my-4">
                         <i class="star fas fa-star text-warning"></i>
                         <i class="star fas fa-star text-warning"></i>
                         <i class="star fas fa-star text-warning"></i>
                         <i class="star fas fa-star text-warning"></i>
-                    <div class="d-flex justify-content-between">
+                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2"><p>{{elemt.details}}</p></span></div>
                     </div>
-                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2">{{elemt.price}}$</span></div>
-                    </div>
+                    <div class="col pl-0"><h5 class="text-muted font-small d-block mb-2">{{elemt.price}}$</h5></div>
+                    <div class="col pl-0"><span class="text-muted font-small d-block mb-2"> <img src="../assets/shopping-cart.svg"/></span></div>
                 </div>
             </div>
         </div>
@@ -128,7 +118,21 @@ export default {
 };
 </script>
 <style>
-.gg-search{
-
+.container .search{
+  float: right;
+  padding: 6px;
+  border: 2px;
+  border-radius: 16px;
+  border-color: #00312C;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size:20px;
+  width:535px;
+  height: 133px;
 }
+h5
+{
+ color: #000000;
+}
+
 </style>
