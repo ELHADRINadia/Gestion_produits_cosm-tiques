@@ -41,7 +41,13 @@ const routes = [
     path:'/Dashboar/update/:id',
     name: 'update',
     component:() => import("@/views/Admin/updateProduct.vue"),
-  }
+  },
+  {
+    path:  '/cart-list',
+    name: 'CartView',
+    component:() => import("@/views/CartView.vue"),
+  },
+
 
 ];
 

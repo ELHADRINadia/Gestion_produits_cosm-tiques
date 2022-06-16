@@ -15,7 +15,7 @@
             <button
             @click= "goToAdd"
              class="float-end btn btn-info">
-              <FIcons :icon="['fas', 'user']" />Add
+              <FIcons :icon="['fas', '']" />Add
 
             </button>
             <div class="clearfix"></div>
@@ -476,6 +476,6 @@
     line-height: 1.25;
   }
   .color{
-    background-color:#00312C; 
+    background-color:#00312C;
   }
 </style>

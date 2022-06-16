@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavProduct />
   <section class="page-section" id="Catégorie">
     <div class="text-center">
         <h2 class="section-heading text-uppercase">Produit</h2>
@@ -46,8 +46,16 @@
                         <i class="star fas fa-star text-warning"></i>
                         <div class="col pl-0"><span class="text-muted font-small d-block mb-2"><p>{{elemt.details}}</p></span></div>
                     </div>
-                    <div class="col pl-0"><h5 class="text-muted font-small d-block mb-2">{{elemt.price}}$</h5></div>
-                    <div class="col pl-0"><span class="text-muted font-small d-block mb-2"> <img src="../assets/shopping-cart.svg"/></span></div>
+                    <div class="col pl-0">
+                      <h5 class="text-muted font-small d-block mb-2">{{elemt.price}}$</h5>
+                    </div>
+                    <div class="col col-1" data-label="Payment Status">
+                      <button
+                        @click= "goTocart"
+                      class="btn shopping">
+                    <i class="gg-shopping-cart"></i>
+                      </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,13 +67,13 @@
   </footer>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
+import NavProduct from "@/components/NavProduct.vue";
 import FooterView from "@/components/FooterView.vue";
 
 export default {
   name: "ProductView",
   components: {
-    NavBar,
+    NavProduct,
     // ProImage,
     FooterView,
 
@@ -101,6 +109,9 @@ export default {
    const data = await response.json();
    console.log(data.products);
    this.productData=data.poducts;
+   },
+   goTocart(){
+     this.$router.push('/cart-list')
    },
    },
    created() {
