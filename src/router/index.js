@@ -47,6 +47,26 @@ const routes = [
     name: 'CartView',
     component:() => import("@/views/CartView.vue"),
   },
+  {
+    path:  '/category',
+    name: 'CategoryView',
+    component:() => import("@/views/Admin/CategoryView.vue"),
+  },
+  {
+    path:'/:catchAll(.*)',
+    name : "404",
+    component:() => import("@/views/NotFound.vue")
+  },
+{
+  path:  '/AddCategory',
+  name: 'AddCategory',
+  component:() => import("@/components/AddCategory.vue"),
+},
+{
+  path:  '/edit-category/:id',
+  name: 'EditCategory',
+  component:() => import("@/components/EditCategory.vue"),
+}
 
 
 ];
@@ -55,5 +75,4 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
 export default router;

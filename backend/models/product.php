@@ -4,23 +4,6 @@ require_once "../backend/database/Db.php";
 
 class Product extends DB
 {
-  /*Select produit*/
-
-    // public function getAll()
-    // {
-    //
-    //         $query = "SELECT * FROM `product`";
-    //         $log = $this->connect()->prepare($query);
-    //         if( $log->execute()){
-    //
-    //             $row = $log->fetchAll(PDO::FETCH_ASSOC);
-    //             return $row ;
-    //         }else{
-    //             return false ;
-    //         }
-    //
-    //
-    // }
     static public function getProduct($data){
       $id = $data['id'];
       try{
@@ -47,8 +30,6 @@ class Product extends DB
    }
 
 }
-/*Ajouter un produit*/
-
 public function create($data)
  {
          $query = "INSERT INTO `product`( `name`, `price`, `quantity`, `image`, `details`,`category`) VALUES ('$data[name]','$data[price]','$data[quantity]','$data[image]','$data[details]','$data[category]')";

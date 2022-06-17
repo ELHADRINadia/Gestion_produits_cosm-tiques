@@ -15,7 +15,7 @@
             <button
             @click= "goToAdd"
              class="float-end btn btn-info">
-              <FIcons :icon="['fas', '']" />Add
+              <FIcons :icon="['fas', 'user']" />Add
 
             </button>
             <div class="clearfix"></div>
@@ -147,7 +147,7 @@
       setTimeout(()=>{
           this.dataComming=false
           this.productData = data
-      },1600)
+      },1400)
     })
   },
   async update(id){
