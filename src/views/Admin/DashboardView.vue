@@ -1,12 +1,8 @@
 <template>
+  <NavDash />
   <div class="container menu">
-    <SideBar />
     <div class="col-lg-9 my-lg-0 my-1">
       <div id="main-content">
-        <div class="d-flex flex-column">
-          <div class="h5">Hello Admin,</div>
-          <div>Logged in as: Admin@gmail.com</div>
-        </div>
         <div>
           <h1 class="text-center"> Dashboard admin</h1>
         </div>
@@ -26,12 +22,12 @@
             </div>
             <table
             v-if='!dataComming'
-            class="table table-border table-striped caption-top">
+            class="table table-border caption-top margin-left ">
               <caption>
                 List of products
               </caption>
               <thead>
-                <tr class="text-light text-center color">
+               <tr class="text-light text-center color ">
                   <th><FIcons :icon="['fas','id-badge']"/> id</th>
                   <th> name</th>
                   <th> price</th>
@@ -87,11 +83,11 @@
 </template>
 
 <script>
-  import SideBar from "@/components/SideBar.vue";
+  import NavDash from "@/components/NavDash.vue";
   export default {
     name: "DashboardView",
     components: {
-      SideBar,
+    NavDash,
     },
     data(){
       return{
@@ -115,7 +111,11 @@
     };
   },
   mounted(){
-     this.getAll();
+    if(localStorage.getItem('login') && localStorage.getItem('role') == 'admin'){
+      this.getAll();
+    }else {
+      this.$router.push('/login')
+    }
   },
   methods:{
     async getAll(){

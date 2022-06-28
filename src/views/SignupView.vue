@@ -43,7 +43,7 @@
           placeholder="enter password"
           class="box"
         />
-        <input type="submit" name="submit" class="btn" value="Register now" />
+        <input type="submit" @click= "goTologin()" name="submit" class="btn" value="Register now" />
         <p>Already have an account? <a href="/login">Login now</a></p>
       </form>
     </div>
@@ -83,34 +83,11 @@
                response = await response.json();
                console.log(response);
                    this.$router.push("/Product/" );
-               }
-      // async  signUp() {
-      //   const formData = new FormData();
-      //   formData.append("firstname", this.firstname);
-      //   formData.append("lastname", this.lastname);
-      //   formData.append("email", this.email);
-      //   formData.append("phone", this.phone);
-      //   formData.append("password", this.password);
-      //   console.log(formData);
-      //   let response = await fetch(
-      //       "http://localhost/fill-rouge/backend/ProductController/addproduct",
-      //       {
-      //           method: "POST", // or 'PUT'
-      //           body: formData,
-      //       }
-      //   );
-      //
-      //     .then((Response) => {
-      //       console.log(Response.data);
-      //
-      //       if (Response.data.success) {
-      //        this.$router.push({ name: "Product" });
-      //       } else {
-      //         alert(Response.data.error);
-      //       }
-      //
-      //     });
-      // },
+               },
+               goTologin(){
+                 this.signUp()  
+                 this.$router.push('/login')
+               },
     },
   };
 </script>

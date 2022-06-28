@@ -1,10 +1,6 @@
 <?php
 require_once __DIR__ . "/../Models/Category.php";
 
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: *');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 class CategoryController
 {
 
@@ -74,6 +70,8 @@ class CategoryController
     /***************************************************************************************/
     public function update()
     {
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
         $category = new Category();
         $id = $_POST['id'];
         $name = $_POST["name"];
@@ -83,7 +81,7 @@ class CategoryController
             echo json_encode(['message' => 'Category updated']);
         } else {
             echo json_encode(['message' => 'Category not updated']);
-        }
+        }}
     }
     /***************************************************************************************/
     public function deleteCategory($id)
@@ -97,6 +95,6 @@ class CategoryController
             } else {
                 echo json_encode(['message' => 'Category not deleted']);
             }
-        }
+        } 
     }
 }

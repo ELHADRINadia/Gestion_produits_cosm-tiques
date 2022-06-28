@@ -1,6 +1,6 @@
 <template>
+  <NavDash />
   <div class="container menu">
-    <SideBar />
     <div class="col-lg-9 my-lg-0 my-1">
       <div id="main-content">
         <div>
@@ -61,7 +61,8 @@
                       <button class="btn delete" @click="delCategory(elemt.id)">
                         <FIcons :icon="['fas', 'trash']" />
                       </button>&nbsp;
-                      <button class="btn btn-warning" @click="editOne(elemt);">
+                      <button
+                       class="btn btn-warning" @click="editOne(elemt);">
                       <FIcons :icon="['fas', 'edit']" /></button>
                     </div>
 
@@ -79,14 +80,12 @@
 </template>
 
 <script>
-  import SideBar from "@/components/SideBar.vue";
+  import NavDash from "@/components/NavDash";
   import AddCategory from "@/components/AddCategory.vue";
-  import EditCategory from "@/components/EditCategory.vue";
   export default {
     name: "CategoryView",
     components: {
-      SideBar,
-      EditCategory,
+      NavDash,
       AddCategory,
     },
     data(){
@@ -115,7 +114,7 @@
         console.log(id);
         let formData =new FormData();
         formData.append("id",id)
-               await fetch('http://localhost/fill-rouge/backend/CategoryController/delete/'+id,{
+               await fetch('http://localhost/fill-rouge/backend/CategoryController/deleteCategory/'+id,{
                    method:"POST",
                    body:formData
 

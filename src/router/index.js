@@ -5,12 +5,17 @@ import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
 import DashboardView from "../views/Admin/DashboardView.vue";
 import AddProduct from "../views/Admin/AddProduct.vue";
-
+import ProfilView from "../views/Admin/ProfilViews.vue";
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/profil",
+    name: "ProfilView",
+    component:ProfilView,
   },
   {
     path: "/product",
@@ -23,8 +28,8 @@ const routes = [
     component: SignupView,
   },
   {
-    path: '/login',
-    name: 'login',
+    path: "/login",
+    name: "login",
     component: LoginView,
   },
   {
@@ -67,8 +72,6 @@ const routes = [
   name: 'EditCategory',
   component:() => import("@/components/EditCategory.vue"),
 }
-
-
 ];
 
 const router = createRouter({

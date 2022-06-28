@@ -24,10 +24,10 @@
                         <p class="text-muted">Juste vos produits preferes, le service de livraison vous les apportera ou que vous soyez.</p>
                     </div>
                     <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
+                        <!-- <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
+                        </span> -->
                         <h4 class="my-3">Donner des Conseils</h4>
                         <p class="text-muted">Nos site Madame vous donne des conseils d'intéret pour votre beauté.</p>
                     </div>
@@ -45,45 +45,37 @@
            <div class="container">
                <div class="text-center">
                    <h2 class="section-heading text-uppercase">About</h2>
-                   <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                   <h3 class="section-subheading text-muted">QUI SOMMES-NOUS ?</h3>
                </div>
                <ul class="timeline">
                    <li>
-                       <div class="timeline-image"><img class="rounded-circle img-fluid" src="#" alt="..." /></div>
+                       <div class="timeline-image">   <h4>
+                              Be Part
+                              <br />
+                              Of Our
+                              <br />
+                              Story!
+                          </h4></div>
                        <div class="timeline-panel">
                            <div class="timeline-heading">
-                               <h4>2009-2011</h4>
-                               <h4 class="subheading">Our Humble Beginnings</h4>
+                               <h4>Nous somme fidele ou client</h4>
                            </div>
-                           <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                           <div class="timeline-body"><p class="text-muted">Tout savoir sur SheGlow nutrition… Sheglow, c’est une aventure familiale.
+                              Découvrez notre histoire, construite autour d’une véritable passion pour les plantes et leur énergie. Nous nous engageons au quotidien,
+                             au sein d’une démarche globale, afin de vous proposer des formules uniques, efficaces et respectueuses de l’environnement.!</p></div>
                        </div>
                    </li>
                    <li class="timeline-inverted">
-                       <div class="timeline-image"><img class="rounded-circle img-fluid" src="#" alt="..." /></div>
+                       <div class="timeline-image">   <h4>
+                              Be Part
+                              <br />
+                              Of Our
+                              <br />
+                              Story!
+                          </h4></div>
                        <div class="timeline-panel">
                            <div class="timeline-heading">
-                               <h4>March 2011</h4>
                                <h4 class="subheading">An Agency is Born</h4>
-                           </div>
-                           <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="timeline-image"><img class="rounded-circle img-fluid" src="#" alt="..." /></div>
-                       <div class="timeline-panel">
-                           <div class="timeline-heading">
-                               <h4>December 2015</h4>
-                               <h4 class="subheading">Transition to Full Service</h4>
-                           </div>
-                           <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                       </div>
-                   </li>
-                   <li class="timeline-inverted">
-                       <div class="timeline-image"><img class="rounded-circle img-fluid" src="#" alt="..." /></div>
-                       <div class="timeline-panel">
-                           <div class="timeline-heading">
-                               <h4>July 2020</h4>
-                               <h4 class="subheading">Phase Two Expansion</h4>
                            </div>
                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                        </div>
@@ -126,7 +118,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/back.jpg");
+  background-image: url("../assets/kkk.jpg");
   /* max-width: 100%;
   height: auto; */
   background-repeat: no-repeat;
@@ -310,7 +302,7 @@ header.masthead .masthead-heading {
   color: white;
   border: 7px solid #e9ecef;
   border-radius: 100%;
-  background-color: #ffc800;
+  background-color: #00312C;
 }
 .timeline > li .timeline-image h4, .timeline > li .timeline-image .h4 {
   font-size: 10px;

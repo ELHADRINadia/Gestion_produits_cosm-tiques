@@ -29,13 +29,13 @@
                 style="width: 100px; background-color: #0d42a0; height: 2px"
               />
               <p>
-                <a href="/#" class="A1">Ahgjhgjhfhjf</a>
+                <a href="/#" class="A1">Vendre</a>
               </p>
               <p>
-                <a href="/#" class="A1">Bdghgdgdg</a>
+                <a href="/#" class="A1">livraison</a>
               </p>
               <p>
-                <a href="/#" class="A1">Cfjfgggghf</a>
+                <a href="/#" class="A1">Donner des Conseils</a>
               </p>
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

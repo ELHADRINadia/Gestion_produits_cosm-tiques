@@ -59,9 +59,8 @@
             aria-expanded="false"
             id="category-filter">
               <option value="all" s elected>All</option>
-              <option value="masque">Masque</option>
-              <option value="creme">Creme</option>
-              <option value="huiles">Huiles</option>
+              <option value="creme">Huiles cheveux</option>
+              <option value="huiles">Huiles visage</option>
             </select>
           </div>
           <div class="inputBox">

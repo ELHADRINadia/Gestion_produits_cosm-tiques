@@ -2,8 +2,6 @@
 
 class UserController
 {
-
-
     public function auth()
     {
         $data["email"] = $_POST['email'];
@@ -28,7 +26,8 @@ class UserController
             $_SESSION['id'] = $result->id;
             echo json_encode([
               "success"=>true,
-              "user"=>$result,
+              "user"=>$result->id,
+              "role"=>$result->role,
             ]);
             return;
         }
@@ -45,7 +44,7 @@ class UserController
     }
     public function register()
     {
-        var_dump($_POST);
+        // var_dump($_POST);
             $data = array(
                 'Last_name' =>   $_POST['lastname'],
                 'First_name' =>  $_POST['firstname'],
@@ -54,11 +53,7 @@ class UserController
                 'password' =>   $_POST['password']
             );
             $resultat = User::createUser($data);
-            if ($resultat === 'good') {
-                Session::set('success', 'User ajouter');
-            } else {
                 echo $resultat;
-            }
     }
 
 

@@ -5,9 +5,6 @@
         <li class="nav-item"> <router-link to="/" class="nav-link active" aria-current="page">  <FIcons :icon="['fa','home']"/> <span class="ms-2">Home</span> </router-link> </li>
         <li> <router-link to="/dashboard" class="nav-link">  <FIcons :icon="['fa','tachometer']"/> <span class="ms-2">Dashboard</span> </router-link> </li>
         <li> <router-link to="/category" class="nav-link">  <FIcons :icon="['fa','list']"/> <span class="ms-2 ">Categories</span> </router-link> </li>
-        <li> <router-link to="/HuileView" class="nav-link">   <span class="ms-2 A1">Huile</span> </router-link> </li>
-        <li> <router-link to="/CremeView" class="nav-link">   <span class="ms-2 A1">Créme</span> </router-link> </li>
-        <li> <router-link to="/MasqueView" class="nav-link">   <span class="ms-2 A1">masque</span> </router-link> </li>
         <li> <router-link to="/MessageView" class="nav-link">  <FIcons :icon="['fas','envelope']"/> <span class="ms-2 ">Messages</span> </router-link> </li>
         <li> <router-link to="/OrdersView" class="nav-link"> <FIcons :icon="['fa','spinner']"/>  <span class="ms-2 ">Ordered</span> </router-link> </li>
         <li> <router-link to="/AccountsView" class="nav-link"> <FIcons :icon="['fas','users']"/>  <span class="ms-2 ">Accounts</span> </router-link> </li>
@@ -15,8 +12,6 @@
     <div class="dropdown"> <router-link  to="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../assets/h3.jpg" alt="" width="32" height="32" class="rounded-circle me-2"> <strong>Admin</strong> </router-link>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><router-link class="dropdown-item A1"  to="/AdminPofile">Profile</router-link></li>
-            <li>
-            </li>
             <li><router-link class="dropdown-item A1"  to="/home">logout</router-link></li>
         </ul>
 

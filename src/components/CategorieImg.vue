@@ -2,20 +2,17 @@
   <div class="small-images">
     <div class="card">
 <img src="../assets/huil-cheveux.jpg" alt="Denim Jeans" style="width:100%">
-<h1>Soin Cheveux</h1>
-<p>Some text about the jeans..</p>
+<h1>Huile Cheveux</h1>
 <p><button><a href="/product">Show More</a></button></p>
 </div>
 <div class="card">
-<img src="../assets/masque-v.jpg" alt="Denim Jeans" style="width:100%">
-<h1>Soin Visage</h1>
-<p>Some text about the jeans..</p>
+<img src="../assets/huile4.jpg" alt="Denim Jeans" style="width:100%">
+<h1>Huile Visage</h1>
 <p><button><a href="/product">Show More</a></button></p>
 </div>
 <div class="card">
-<img src="../assets/p-vapeur.jpg" alt="Denim Jeans" style="width:100%">
-<h1>Soin Corps</h1>
-<p>Some text about the jeans..</p>
+<img src="../assets/sss.jpg" alt="Denim Jeans" style="width:100%">
+<h1>Cheveux & Visage</h1>
 <p><button><a href="/product">Show More</a></button></p>
 </div>
      </div>

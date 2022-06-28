@@ -8,33 +8,26 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-center">
-                  Edit Category
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+                <h5 class="modal-title">Update Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="modal-body text-dark bg-light">
-                  <form @submit.prevent="update()">
+                  <form @submit.prevent="update">
                     <div class="form-group">
                       <label for="examplegareA">Name</label>
                       <input type="text" class="form-control" required  v-model="name"/>
+                      <input
+                        type="submit"
+                        value="Submit"
+                        class="btn"
+                      />
                     </div>
                   </form>
                 </div>
               </div>
               <div class="modal-footer">
-                <input
-                  type="submit"
-                  value="Submit"
-                  class="btn"
-                    @click="Edit()"
-                />
+
               </div>
             </div>
           </div>
@@ -64,56 +57,55 @@ export default {
       //       this.editCategory = data;
       //   },
 
-        async Add() {
-        const formData = new FormData();
-        formData.append("name", this.name);
-         await fetch(
-            "http://localhost/fill-rouge/backend/CategoryController/create",
-            formData
-          )
-          .then((Response) => {
-            console.log(Response.data);
-             this.$router.go("/category");
-          });
-      },
-      async update(id) {
-        const obj = {
-          name: this.editCategory.name,
-          id: id,
-        };
-        await fetch("http://localhost/fill-rouge/backend/CategoryController/update/" + id, {
+      //   async Add() {
+      //   const formData = new FormData();
+      //   formData.append("name", this.name);
+      //    await fetch(
+      //       "http://localhost/fill-rouge/backend/CategoryController/create",
+      //       formData
+      //     )
+      //     .then((Response) => {
+      //       console.log(Response.data);
+      //        this.$router.go("/category");
+      //     });
+      // },
+      async update() {
+
+          let formData = new FormData()
+          formData.append('id',this.id);
+          formData.append('name',this.name);
+        await fetch("http://localhost/fill-rouge/backend/CategoryController/update", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
+          body: formData,
         });
-        this.$router.go("/category");
+
+        this.$router.push("/category");
       },
     },
     mounted() {
       //do something after mounting vue instance
-      console.log(this.$router.params.id)
+      console.log('hellow',this.$route.params.id)
       // get one
       var myHeaders = new Headers();
       myHeaders.append("Cookie", "PHPSESSID=fivmpbim9d2stqvup4n98bq9s9");
-
       var requestOptions = {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
       };
 
-      fetch("http://localhost/fill-rouge/backend/CategoryController/getOneCategory/"+this.$router.params.id, requestOptions)
+      fetch("http://localhost/fill-rouge/backend/CategoryController/getOneCategory/"+this.$route.params.id, requestOptions)
         .then(response => response.json())
-        .then(result => console.log(result))
+        .then(result =>
+        {  this.name=result.name
+          this.id=result.id}
+
+        )
         .catch(error => console.log('error', error));
-
     }
-
 };
 </script>
-<style scoped>
+ <style scoped>
  .modal form .flex .inputBox {
     flex: 1 1 20rem;
     margin: 0.5rem;
@@ -121,7 +113,6 @@ export default {
   }
   .modal form .flex .inputBox .box {
     background-color: #eee;
-    color: #333;
     width: 100%;
     border-radius: 5px;
     border: 0.1rem solid #333;
@@ -142,20 +133,20 @@ export default {
     height: 7vh;
     margin-top: 2.1rem;
     padding-left: 0.5rem;
+    color:#fff;
   }
   .btn input:focus {
     border: 0.1rem solid #0d61e8;
   }
-  .h5, h5 {
-    color:#ff7200;
+   h5 {
+    color:#00312C;
     font-size: 2.25rem;
     text-align:center;
 }
 .modal-title{
-    color: #f39c12;
+    color: #00312C;
     font-size: 2rem;
     text-align:center;
     margin-left: 87px;
 }
-
 </style>

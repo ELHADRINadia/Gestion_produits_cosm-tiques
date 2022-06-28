@@ -1,4 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 require_once dirname(__DIR__)."/models/product.php";
 class ProductController
 {
@@ -61,13 +65,15 @@ class ProductController
   public function update()
     {
 
-        $category = new Product();
-        // $image = $_FILES['image'];
+        $product = new Product();
+        $new_name = null;
+        if(array_key_exists('image', $_FILES)){
+        $image = $_FILES['image'];
         $extention = pathinfo($image["name"], PATHINFO_EXTENSION);
         $new_name = uniqid('', true) . '.' . $extention;
         $target = "../Backend/images/" . $new_name;
         move_uploaded_file($image['tmp_name'], $target);
-
+}
         $name = $_POST['name'];
         $price = $_POST['price'];
         $quantity = $_POST['quantity'];
@@ -76,7 +82,7 @@ class ProductController
         $category = $_POST['category'];
         $id = $_POST['id'];
 
-        if ($category->update($id,$name,$price,$quantity,$image,$details,$category)) {
+        if ($product->update($id,$name,$price,$quantity,$image,$details,$category)) {
             echo json_encode(['message' => 'Product updated']);
         } else {
             echo json_encode(['message' => 'Product not updated']);
@@ -101,17 +107,20 @@ public function delete()
           $stmt =Product::searchProducts($search);
           echo json_encode($stmt);
       }
+         public function getProduct_by_category()
+         {
 
-      public function products_by_category(){
-             $search = $_POST['search'];
-             $stmt =Product::get_products_by_category($search);
-             echo json_encode($stmt);
+             if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                 $category = new Product();
+                 $result = $category->getProductbycategory();
+                 if ($result){
+
+                     echo json_encode($result);
+                 } else {
+                     echo json_encode(['message' => 'no Product exist']);
+                 }
+             } else {
+                 echo json_encode(['message' => 'change the method']);
+             }
          }
-
-
-
-
-
-
-
   }

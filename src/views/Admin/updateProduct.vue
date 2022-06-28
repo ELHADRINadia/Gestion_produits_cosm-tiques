@@ -38,7 +38,6 @@
               name="image"
               class="box"
               accept="image/*"
-              required
             />
           </div>
           <div class="inputBox">
@@ -111,7 +110,8 @@ methods:{
 this.product.image = e.target.files[0];
   },
 async updateProduct() {
-  let formData = new FormData();
+  let formData = new FormData()
+  formData.append('id',this.$route.params.id);
   formData.append('name',this.product.name);
   formData.append('price',this.product.price);
   formData.append('image',this.product.image);

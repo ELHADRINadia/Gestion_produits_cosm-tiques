@@ -40,40 +40,45 @@
         password: "",
       };
     },
+    mounted() {
+      if (localStorage.getItem("login") || localStorage.getItem("login") != undefined) {
+        this.$router.push("/");
+      }
+    },
     methods: {
       async signIn() {
         const formData = new FormData();
         formData.append("email", this.email);
         formData.append("password", this.password);
-        let response = await fetch(
+        fetch(
             "http://localhost/fill-rouge/backend/UserController/auth",
             {
                 method: "POST", // or 'PUT'
                 body: formData
             }
-        );
-        response = await response.json();
-            console.log(response);
-            if (response.success) {
-              if (response.user.role == "admin") {
-                this.$router.push({ name: "dashboard" });
+        )
+        .then((Response) => Response.json())
+        .then((data) =>{
+          console.log(data);
+          if (data.success){
+            localStorage.setItem("login", JSON.stringify(data.user));
+          localStorage.setItem("role", data.role);
+          if(data.role== "admin"){
+            this.$router.push("/dashboard");
+          }
 
-              }else {
-                this.$router.push({ name: "product" });
-
-              }
-            } else {
-              alert(response.message);
-            }
-
-
+           // this.$router.push("/");
+          } else {
+            alert('console.error();');
+          }
+        })
       },
     },
   };
 </script>
 <style scoped>
   * {
-    font-family: "Nunito", sans-serif;
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

@@ -1,145 +1,81 @@
 <template>
-  <div class="container">
-    <h5>Card</h5>
-    <ul class="responsive-table">
-      <li class="table-row">
+  <div class="page">
+    <NavBar />
+    <div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div class="p-2">
+                    </div>
+                    <div class="d-flex cart flex-row justify-content-between  align-items-center p-2  mt-4 px-3 rounded"  v-for ='(product,index) in products' :key='index'>
+                        <div class="mr-1"><img class="rounded" :src="'http://localhost/fill-rouge/backend/images/'+product.image" width="70"></div>
+                        <div class="d-flex flex-column align-items-center product-details">
+                          <span class="name">{{ product.name }}</span> &nbsp;&nbsp;
+                            <div class="d-flex flex-row product-desc">
+                                <div class="size mr-1"><span class="text-grey">{{ product.details }}</span><span class="font-weight-bold">&nbsp;M</span></div>
+                                <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
+                            <h5 class="text-grey mt-1 mr-1 ml-1">{{ product.quantity }}</h5><i class="fa fa-plus text-success"></i></div>
+                        <div>
+                            <h5 class="text-grey">{{ product.price }}$</h5>
+                        </div>
+                        <!-- <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div> -->
+                    </div>
 
-        <div class="col col-1" data-label="Customer Name :">image</div>
-        <div class="col col-1" data-label="Amount :">
-          name detaille category price
-        </div>
+                    <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-outline-warning btn-sm ml-2" type="button">Apply</button></div>
 
-        <div class="cart">
-          <button class="cart_button">-</button>
-          <span class="cart_quantity">0</span>
-          <button class="cart_button">+</button>
+                </div>
+            </div>
         </div>
-
-        <div class="col col-1" data-label="Payment Status">
-          <button class="btn delete">
-            <FIcons :icon="['fas', 'trash']" />
-          </button>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
   export default {
-    name: "AddToCart",
-    components: {},
+    name: "CartView",
+    components: {
+      NavBar,
+    },
+    data() {
+      return {
+        products: "",
+        id_user: localStorage.getItem("login"),
+        cart: [],
+      };
+    },
+    mounted() {
+      this.getCart();
+    },
+    methods: {
+      getCart: async function () {
+        const id = JSON.parse(this.id_user);
+        let formData = new FormData();
+        formData.append("id",id);
+         fetch(
+            "http://localhost/fill-rouge/backend/PanierController/read",{
+              method:"POST",
+              body:formData
+            }
+          )
+          .then(res => res.json())
+          .then((response) => {
+            this.products = response;
+            console.log({p : this.products})
+          });
+      },
+    },
   };
 </script>
-
 <style scoped>
-  * {
-    box-sizing: border-box;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  h5 {
-    font-size: 26px;
-    margin: 20px 0;
-    text-align: center;
-  }
-  h5 small {
-    font-size: 0.5em;
-  }
-  .responsive-table li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-    align-items: center;
-  }
-  .responsive-table .table-header {
-    background-color: rgb(88, 109, 216);
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  .responsive-table .table-row {
-    background-color: #fff;
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-  }
-  .responsive-table .col-1 {
-    flex-basis: 10%;
-  }
-  .col .edit {
-    color: #fff;
-    background-color: #00c851;
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  .col .delete {
-    color: #fff;
-    background-color: #f44336;
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  .col .edit:hover {
-    text-decoration: none;
-    color: #fff;
-    background-color: #048e0d;
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  .col .delete:hover {
-    text-decoration: none;
-    color: #fff;
-    background-color: #a30606;
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  .cart .cart_button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #ccc;
-    font-size: 20px;
-    text-align: center;
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  @media all and (max-width: 767px) {
-    .responsive-table .table-header {
-      display: none;
-    }
-    .responsive-table li {
-      display: block;
-    }
-    .responsive-table .col {
-      flex-basis: 100%;
-    }
-    .responsive-table .col {
-      display: flex;
-      padding: 10px 0;
-    }
-    .responsive-table .col:before {
-      color: #6c7a89;
-      padding-right: 10px;
-      content: attr(data-label);
-      flex-basis: 50%;
-      text-align: right;
-    }
-  }
+.cart {
+  border :2px solid #eee;
+  border-radius: 5px;
+}
+.name{
+  font-family:Montserrat;
+  font-weight: bold;
+  font-size:17px;
+}
 </style>
